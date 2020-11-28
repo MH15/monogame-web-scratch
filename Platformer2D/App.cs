@@ -23,7 +23,7 @@ namespace Platformer2D
             button.style.fontSize = "20px";
             div.appendChild(button);
 
-            button.onclick = (ev) => 
+            button.onclick = (ev) =>
             {
                 div.removeChild(button);
 

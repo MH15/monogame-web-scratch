@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.Framework.Bridge", "MonoGame.Framework\MonoGame.Framework.Bridge.csproj", "{DBB1DE0F-D823-4608-9F2E-1DAB90CACF30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGame.Framework.Bridge", "MonoGame.Framework\MonoGame.Framework.Bridge.csproj", "{DBB1DE0F-D823-4608-9F2E-1DAB90CACF30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platformer2D", "Platformer2D\Platformer2D.csproj", "{1E1456CF-43B2-4E89-BD9C-3BFB066AE042}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Platformer2D", "Platformer2D\Platformer2D.csproj", "{1E1456CF-43B2-4E89-BD9C-3BFB066AE042}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zelda", "Zelda\Zelda.csproj", "{D23D5B62-FBFF-479A-8E01-B4752AA75E2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{DBB1DE0F-D823-4608-9F2E-1DAB90CACF30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -44,5 +43,23 @@ Global
 		{1E1456CF-43B2-4E89-BD9C-3BFB066AE042}.Release|x64.Build.0 = Release|Any CPU
 		{1E1456CF-43B2-4E89-BD9C-3BFB066AE042}.Release|x86.ActiveCfg = Release|Any CPU
 		{1E1456CF-43B2-4E89-BD9C-3BFB066AE042}.Release|x86.Build.0 = Release|Any CPU
+		{D23D5B62-FBFF-479A-8E01-B4752AA75E2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D23D5B62-FBFF-479A-8E01-B4752AA75E2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D23D5B62-FBFF-479A-8E01-B4752AA75E2B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D23D5B62-FBFF-479A-8E01-B4752AA75E2B}.Debug|x64.Build.0 = Debug|Any CPU
+		{D23D5B62-FBFF-479A-8E01-B4752AA75E2B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D23D5B62-FBFF-479A-8E01-B4752AA75E2B}.Debug|x86.Build.0 = Debug|Any CPU
+		{D23D5B62-FBFF-479A-8E01-B4752AA75E2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D23D5B62-FBFF-479A-8E01-B4752AA75E2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D23D5B62-FBFF-479A-8E01-B4752AA75E2B}.Release|x64.ActiveCfg = Release|Any CPU
+		{D23D5B62-FBFF-479A-8E01-B4752AA75E2B}.Release|x64.Build.0 = Release|Any CPU
+		{D23D5B62-FBFF-479A-8E01-B4752AA75E2B}.Release|x86.ActiveCfg = Release|Any CPU
+		{D23D5B62-FBFF-479A-8E01-B4752AA75E2B}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8B84E00B-A6D5-487C-85B5-C2363688A309}
 	EndGlobalSection
 EndGlobal

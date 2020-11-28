@@ -32,7 +32,7 @@ namespace Platformer2D
             Texture.Die = await content.LoadAsync<Texture2D>("Sprites/Player/Die"); Counter++;
             Texture.Gem = await content.LoadAsync<Texture2D>("Sprites/Gem"); Counter++;
 
-            Texture.BackgroundLayer = new Texture2D[3,3];
+            Texture.BackgroundLayer = new Texture2D[3, 3];
             for (int x = 0; x < 3; x++)
             {
                 for (int y = 0; y < 3; y++)
@@ -63,7 +63,8 @@ namespace Platformer2D
             Texture.Tiles["Exit"] = await content.LoadAsync<Texture2D>("Tiles/Exit"); Counter++;
             Texture.Tiles["Platform"] = await content.LoadAsync<Texture2D>("Tiles/Platform"); Counter++;
 
-            Songs.Music = await content.LoadAsync<Song>("Sounds/Music"); Counter++;
+            //Songs.Music = await content.LoadAsync<Song>("Sounds/Music");
+            Counter++;
 
             SoundEffects.killedSound = await SoundEffect.FromURL("Content/Sounds/PlayerKilled.wav"); Counter++;
             SoundEffects.jumpSound = await SoundEffect.FromURL("Content/Sounds/PlayerJump.wav"); Counter++;

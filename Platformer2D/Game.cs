@@ -89,9 +89,9 @@ namespace Platformer2D
             globalTransformation = Matrix.CreateScale(screenScalingFactor);
 
             virtualGamePad = new VirtualGamePad(baseScreenSize, globalTransformation, GameContent.Texture.VirtualControlArrow);
-            
+
             MediaPlayer.IsRepeating = true;
-            MediaPlayer.Play(GameContent.Songs.Music);
+            //MediaPlayer.Play(GameContent.Songs.Music);
 
             LoadNextLevel();
         }
@@ -113,7 +113,7 @@ namespace Platformer2D
             HandleInput(gameTime);
 
             // update our level, passing down the GameTime along with all of our input states
-            level.Update(gameTime, keyboardState, gamePadState, 
+            level.Update(gameTime, keyboardState, gamePadState,
                          accelerometerState, Window.CurrentOrientation);
 
             if (level.Player.Velocity != Vector2.Zero)
@@ -165,7 +165,7 @@ namespace Platformer2D
             // Unloads the content for the current level before loading the next one.
             if (level != null)
                 level.Dispose();
-                
+
             level = new Level(levelIndex);
         }
 
@@ -202,23 +202,23 @@ namespace Platformer2D
                     var size = GameContent.Font.hudFont.MeasureString("Click on game area to start it!");
 
                     spriteBatch.Begin();
-                    
+
                     if (!GameContent.IsLoaded)
                     {
                         spriteBatch.DrawString(GameContent.Font.hudFont, "Platformer2D is loading: " + GameContent.Counter + " / 47", new Vector2(20, 440 - size.Y - 10), Color.White);
                         spriteBatch.Draw(GameContent.Texture.Pixel, new Rectangle(20, 440, (int)(760 * (GameContent.Counter / 47f)), 20), Color.White);
                     }
-                    
+
                     spriteBatch.End();
                 }
 
                 base.Draw(gameTime);
                 return;
             }
-            
+
             graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null,null, globalTransformation);
+            spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointClamp, null, null, null, globalTransformation);
 
             level.Draw(gameTime, spriteBatch);
 
@@ -258,7 +258,7 @@ namespace Platformer2D
             float timeHeight = GameContent.Font.hudFont.MeasureString(timeString).Y;
             DrawShadowedString(GameContent.Font.hudFont, "SCORE: " + level.Score.ToString(), hudLocation + new Vector2(0.0f, timeHeight * 1.2f), Color.Yellow);
             DrawShadowedString(GameContent.Font.hudFont, "FPS: " + frame, hudLocation + new Vector2(0.0f, timeHeight * 2.3f), Color.Yellow);
-           
+
             // Determine the status overlay message to show.
             Texture2D status = null;
             if (level.TimeRemaining == TimeSpan.Zero)

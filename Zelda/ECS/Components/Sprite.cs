@@ -53,6 +53,8 @@ namespace game_project.ECS.Components
             }
         }
 
+        int i = 0;
+
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (sprite != null && visible)
@@ -63,8 +65,8 @@ namespace game_project.ECS.Components
                     return;
                 }
                 //Console.Log("Spritesheet exists @ " + entity.name);
-
-                var location = entity.GetComponent<Transform>().WorldPosition;
+                var transform = entity.GetComponent<Transform>();
+                var location = transform.WorldPosition;
                 if (sprite.offsets != null)
                 {
                     location += sprite.offsets[sprite.currentFrame] * 4;
@@ -72,11 +74,18 @@ namespace game_project.ECS.Components
 
 
 
-                var rotation = entity.GetComponent<Transform>().rotation;
+                var rotation = transform.rotation;
                 rotation = 0f;
-                var Zpos = entity.GetComponent<Transform>().layerDepth;
+                var Zpos = transform.layerDepth;
                 float scalar = sprite.scalar;
                 Rectangle frame = sprite.frames[sprite.currentFrame];
+
+                //i++;
+                //if (entity.name == "LevelParent" && i % 30 == 0)
+                //{
+                //    Console.Log("local: " + transform.position + ", world: " + transform.WorldPosition);
+                //}
+
                 spriteBatch.Draw(sprite.spriteSheet,
                     new Rectangle((int)location.X, (int)location.Y, (int)(frame.Width * scalar), (int)(frame.Height * scalar)),
                     frame,
@@ -84,7 +93,7 @@ namespace game_project.ECS.Components
                     rotation,
                     new Vector2(0, 0),
                     sprite.spriteEffects,
-                    1f // Zpos
+                    Zpos
                 );
             }
             else

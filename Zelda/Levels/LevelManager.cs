@@ -57,18 +57,15 @@ namespace game_project.Levels
 
             winText = new TextShadowEntity(new Vector2(340, 540), "Victory", Color.White);
             winText.State = EntityStates.Disabled;
-            Console.Log("tits");
 
             retryDialog = new RetryDialog();
             retryDialog.State = EntityStates.Disabled;
 
             // UI Backdrop
-            Console.Log("making backdrop");
             backdrop = new Backdrop();
             Scene.Add(backdrop);
             var backdropTransform = backdrop.GetComponent<Transform>();
             backdropTransform.AddChild(mapRoot);
-            Console.Log("made backdrop");
         }
 
         public static void Load(string name, bool useCache = true)

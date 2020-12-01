@@ -11,14 +11,14 @@ namespace game_project.ECS.Components
         public List<Transform> Children { get; } = new List<Transform>();
         public Vector2 position = Vector2.Zero;
         public Vector2 lastPosition = Vector2.Zero;
-        //public Vector2 WorldPosition
-        //{
-        //    get { return GetWorldPosition(); }
-        //}
         public Vector2 WorldPosition
         {
-            get { return CalculateWorldPosition(); }
+            get { return GetWorldPosition(); }
         }
+        //public Vector2 WorldPosition
+        //{
+        //    get { return CalculateWorldPosition(); }
+        //}
         public float layerDepth = 0f;
         public Vector2 scale = Vector2.Zero;
         public float rotation = 0;
@@ -97,14 +97,7 @@ namespace game_project.ECS.Components
             localMatrix *= Matrix.CreateTranslation(position.X, position.Y, 0f);
             localMatrix *= Matrix.CreateRotationZ(rad);
             // Apply transformation matrix to Zero vector to get world position.
-            worldPosition = Vector2.Transform(Vector2.Zero, localMatrix);
-            if (i % 5000 == 0 && entity.name == "wall")
-            {
-                var worldPositionTest = Vector2.Transform(Vector2.Zero, GetWorldMatrix());
-                Console.Log(i + ", " + worldPositionTest);
-                Console.Log("yee" + worldPosition);
-                worldPosition = worldPositionTest;
-            }
+            worldPosition = Vector2.Transform(Vector2.Zero, GetWorldMatrix());
             return worldPosition;
         }
 
@@ -118,9 +111,9 @@ namespace game_project.ECS.Components
 
         public override void Update(GameTime gameTime)
         {
-            //GetWorldPosition();
-            worldPosition = CalculateWorldPosition();
+            //worldPosition = CalculateWorldPosition();
             lastPosition = position;
+            GetWorldPosition();
         }
     }
 

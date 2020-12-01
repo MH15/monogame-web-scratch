@@ -1,4 +1,5 @@
-﻿using game_project.CollisionResponse;
+﻿using Bridge.Utils;
+using game_project.CollisionResponse;
 using game_project.ECS.Components;
 using game_project.GameObjects.Block;
 using game_project.Levels;
@@ -15,13 +16,29 @@ namespace game_project.GameObjects.Layout
         private Vector2 start;
         private float t = 0;
 
+        int i = 0;
+
         public override void Update(GameTime gameTime)
         {
             var transform = entity.GetComponent<Transform>();
 
+
+            //i++;
+            //if (i % 100 == 0)
+            //{
+            //    //Console.Log("frame");
+            //    Console.Log(entity.name);
+            //    Console.Log(transform.position.X + ", " + transform.WorldPosition);
+            //    transform.position.X += 40;
+            //    Console.Log(transform.position.X + ", " + transform.WorldPosition);
+            //}
+
+
+
             if (moving)
             {
-                transform.position = Vector2.Lerp(start, goal, t);
+                Console.Log("yeeeee, " + t);
+                transform.position = Lerp(start, goal, t);
                 t += deltaT;
 
                 if (t >= 1f)
@@ -71,6 +88,13 @@ namespace game_project.GameObjects.Layout
                     break;
             }
             start = entity.GetComponent<Transform>().position;
+        }
+
+        public static Vector2 Lerp(Vector2 value1, Vector2 value2, float amount)
+        {
+            return new Vector2(
+                MathHelper.Lerp(value1.X, value2.X, amount),
+                MathHelper.Lerp(value1.Y, value2.Y, amount));
         }
     }
 }

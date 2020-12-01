@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -21,18 +22,21 @@ namespace game_project.Fonts
 
         // Helps with mapping sound effects to their files. 
         // Makes it so you can search for effects without needing to memorize the names. You can intellisense the values of this
-        
+
         public enum FontFiles
         {
             LoZ
         }
 
-        public void LoadAllFonts(ContentManager content)
+        public async Task LoadAllFonts(ContentManager content)
         {
-            foreach(string effect in Enum.GetNames(typeof(FontFiles)))
-            {
-                fonts.Add(effect, content.Load<SpriteFont>(effect));
-            }
+            //foreach (string effect in Enum.GetNames(typeof(FontFiles)))
+            //{
+            //    fonts.Add(effect, content.Load<SpriteFont>(effect));
+            //}
+            var f = await content.LoadAsync<SpriteFont>("LoZ");
+            fonts.Add("LoZ", f);
+
         }
 
         public static SpriteFont GetFont(FontFiles font)

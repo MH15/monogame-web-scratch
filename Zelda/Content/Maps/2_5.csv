@@ -16,4 +16,5 @@ block,9,7,0,0,rigid,bluestatuedragon
 block,12,3,0,0,rigid,bluestatuedragon
 block,12,5,0,0,rigid,bluestatuedragon
 block,12,7,0,0,rigid,bluestatuedragon
+enemy,6,4,0,0,stalfo,,
 # player,7.5,9,0,0

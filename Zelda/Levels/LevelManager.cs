@@ -37,8 +37,9 @@ namespace game_project.Levels
             Init();
         }
 
-        private static void Init()
+        public static void Init()
         {
+            Console.Log("INTITITIITITI");
             // Game Layer
             mapRoot = new LevelParent();
             cache = new Dictionary<string, Level>();
@@ -56,11 +57,13 @@ namespace game_project.Levels
 
             winText = new TextShadowEntity(new Vector2(340, 540), "Victory", Color.White);
             winText.State = EntityStates.Disabled;
+            Console.Log("tits");
 
             retryDialog = new RetryDialog();
             //retryDialog.State = EntityStates.Disabled;
 
             // UI Backdrop
+            Console.Log("making backdrop");
             backdrop = new Backdrop();
             Scene.Add(backdrop);
             var backdropTransform = backdrop.GetComponent<Transform>();
@@ -114,9 +117,13 @@ namespace game_project.Levels
 
         public static void Defeat()
         {
+            Console.Log("defeat");
             deadText.State = EntityStates.Playing;
+            Console.Log("1");
             mapRoot.State = EntityStates.Paused;
+            Console.Log("2");
             GameStateManager.State = GameStates.Defeat;
+            Console.Log("3");
 
             // Show the "Retry?" dialog
             //retryDialog.State = EntityStates.Playing;

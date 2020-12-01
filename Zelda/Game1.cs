@@ -30,6 +30,8 @@ namespace game_project
         public bool IsLoaded = false;
         public int LoadCounter = 0;
 
+        public static SpriteFont font;
+
 
         public Game1()
         {
@@ -50,6 +52,8 @@ namespace game_project
         {
             Console.Log("initialize");
             keyboard = new KeyboardController();
+
+            GameStateManager.State = GameStates.Playing;
             //string initialPath = Constants.STARTING_LEVEL;
             //LevelManager.Load(initialPath);
 
@@ -63,11 +67,14 @@ namespace game_project
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+
             LoadStuff();
             //link = new SpriteTest(new Vector2(200, 200));
             //link = new GameObjects.Link.Link(new Vector2(200, 200));
             //Scene.Add(link);
             string initialPath = Constants.STARTING_LEVEL;
+            //initialPath = "2_5";
+            //LevelManager.Init();
             LevelManager.Load(initialPath);
         }
 
@@ -104,11 +111,17 @@ namespace game_project
                 NPCSpriteFactory.Instance.LoadAllTextures(this.Content),
                 EnemySpriteFactory.Instance.LoadAllTextures(this.Content),
                 LinkItemSpriteFactory.Instance.LoadAllTextures(this.Content),
+                Font.Instance.LoadAllFonts(this.Content),
+                //Content.LoadAsync<SpriteFont>("LoZ")
             };
 
             Task t = Task.WhenAll(taskList);
 
+            //font = await 
+
             await t;
+
+            await Font.Instance.LoadAllFonts(this.Content);
 
 
 
@@ -142,15 +155,20 @@ namespace game_project
 
             if (!IsLoaded)
             {
-                Console.Log("loading");
+                //Console.Log("loading");
 
             }
 
-            i++;
-            if (i % 100 == 0)
-            {
-                //Console.Log("frame");
-            }
+            //i++;
+            //if (i % 100 == 0)
+            //{
+            //    //Console.Log("frame");
+            //    Console.Log(LevelManager.mapRoot.name);
+            //    var transform = LevelManager.currentLevel.Root.GetComponent<Transform>();
+            //    Console.Log(transform.position.X + ", " + transform.WorldPosition);
+            //    transform.position.X += 40;
+            //    Console.Log(transform.position.X + ", " + transform.WorldPosition);
+            //}
             // Update KeyboardController for Commands
             keyboard.Update();
 
@@ -163,8 +181,9 @@ namespace game_project
             ColliderSystem.Update(gameTime);
             ColliderSystem.Check();
             SpriteSystem.Update(gameTime);
-            //TextSystem.Update(gameTime);
+            TextSystem.Update(gameTime);
             ////Sound.Update(gameTime);
+            ///
 
             base.Update(gameTime);
         }
@@ -190,7 +209,7 @@ namespace game_project
             //spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp);
             SpriteSystem.Draw(spriteBatch); // Draw all Sprite components
             ColliderSystem.Draw(spriteBatch); // Draw all Collider debug boxes
-            //TextSystem.Draw(spriteBatch); // Draw all Text components
+                                              //TextSystem.Draw(spriteBatch); // Draw all Text components
 
             //DrawShadowedString(hudFont, "FPS: " + frame, new Vector2(0.0f, 4f), Color.Yellow);
 

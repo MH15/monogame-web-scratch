@@ -48,10 +48,10 @@ namespace game_project.Controllers
         {
             // Iterate through all keys being pressed right now and fire their command if they are being pressed
             Keys[] keys = Keyboard.GetState().GetPressedKeys();
-            if (keys.Length > 0)
-            {
-                Console.Log(keys);
-            }
+            //if (keys.Length > 0)
+            //{
+            //    Console.Log(keys);
+            //}
             for (int i = 0; i < keys.Length; i++)
             {
                 if (keymap.TryGetValue(keys[i], out ICommand command))

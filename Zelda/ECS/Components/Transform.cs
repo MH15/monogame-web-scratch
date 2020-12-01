@@ -11,9 +11,13 @@ namespace game_project.ECS.Components
         public List<Transform> Children { get; } = new List<Transform>();
         public Vector2 position = Vector2.Zero;
         public Vector2 lastPosition = Vector2.Zero;
+        //public Vector2 WorldPosition
+        //{
+        //    get { return GetWorldPosition(); }
+        //}
         public Vector2 WorldPosition
         {
-            get { return GetWorldPosition(); }
+            get { return CalculateWorldPosition(); }
         }
         public float layerDepth = 0f;
         public Vector2 scale = Vector2.Zero;
@@ -70,6 +74,18 @@ namespace game_project.ECS.Components
         }
         int i = 0;
 
+        private Vector2 GetParentPosition()
+        {
+            Vector2 parentPosition = Vector2.Zero;
+
+            if (Parent != null)
+            {
+                parentPosition += Parent.GetParentPosition();
+            }
+
+            return parentPosition;
+        }
+
         private Vector2 GetWorldPosition()
         {
             i++;
@@ -92,10 +108,18 @@ namespace game_project.ECS.Components
             return worldPosition;
         }
 
+        private Vector2 CalculateWorldPosition()
+        {
+            Vector2 parentPosition = GetParentPosition();
+            worldPosition = position + parentPosition;
+            return worldPosition;
+        }
+
 
         public override void Update(GameTime gameTime)
         {
-            GetWorldPosition();
+            //GetWorldPosition();
+            worldPosition = CalculateWorldPosition();
             lastPosition = position;
         }
     }

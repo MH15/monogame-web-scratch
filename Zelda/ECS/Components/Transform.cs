@@ -95,7 +95,7 @@ namespace game_project.ECS.Components
             // Create local transformation matrix from set position and rotation values.
             float rad = MathHelper.ToRadians(rotation);
             localMatrix *= Matrix.CreateTranslation(position.X, position.Y, 0f);
-            localMatrix *= Matrix.CreateRotationZ(rad);
+            //localMatrix *= Matrix.CreateRotationZ(rad);
             // Apply transformation matrix to Zero vector to get world position.
             worldPosition = Vector2.Transform(Vector2.Zero, GetWorldMatrix());
             return worldPosition;

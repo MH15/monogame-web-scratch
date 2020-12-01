@@ -37,7 +37,7 @@ namespace game_project.GameObjects.Layout
 
             if (moving)
             {
-                Console.Log("yeeeee, " + t);
+                Console.Log("yeeeee, " + t + ", " + transform.position.Y);
                 transform.position = Lerp(start, goal, t);
                 t += deltaT;
 

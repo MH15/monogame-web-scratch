@@ -131,7 +131,7 @@
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
+/processorParam:TextureFormat=Color
 /build:LoZ.spritefont
 
 #begin MagicalRod.wav

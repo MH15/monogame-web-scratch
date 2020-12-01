@@ -35,7 +35,6 @@ namespace game_project
 
         public Game1()
         {
-            Console.Log("constructor");
             graphics = new GraphicsDeviceManager(this)
             {
                 PreferredBackBufferWidth = Constants.SCREEN_PREFERRED_WIDTH_PX,
@@ -50,7 +49,6 @@ namespace game_project
 
         protected override void Initialize()
         {
-            Console.Log("initialize");
             keyboard = new KeyboardController();
 
             GameStateManager.State = GameStates.Playing;
@@ -63,72 +61,50 @@ namespace game_project
 
         protected override void LoadContent()
         {
-            //Console.Log("load");
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-
             LoadStuff();
-            //link = new SpriteTest(new Vector2(200, 200));
-            //link = new GameObjects.Link.Link(new Vector2(200, 200));
-            //Scene.Add(link);
-            string initialPath = Constants.STARTING_LEVEL;
-            //initialPath = "2_5";
-            //LevelManager.Init();
-            LevelManager.Load(initialPath);
         }
 
         private async void LoadStuff()
         {
-            ////load all spritesheets
+            await GameContent.Init(Content, GraphicsDevice);
+            string initialPath = Constants.STARTING_LEVEL;
+            //    //initialPath = "2_5";
+            Console.Log("load");
+            LevelManager.Load(initialPath);
 
-            //await ItemSpriteFactory.Instance.LoadAllTextures(this.Content);
-            ////Console.Log("load 1");
-            //await HUDSpriteFactory.Instance.LoadAllTextures(this.Content);
-            ////Console.Log("load 2");
-            //await LevelMapSpriteFactory.Instance.LoadAllTextures(this.Content);
-            ////Console.Log("load 3");
-            //await BossSpriteFactory.Instance.LoadAllTextures(this.Content);
-            ////Console.Log("load 4");
-            //await NPCSpriteFactory.Instance.LoadAllTextures(this.Content);
-            ////Console.Log("load 5");
-            //await EnemySpriteFactory.Instance.LoadAllTextures(this.Content);
-            ////Console.Log("load 6");
-            //await LinkItemSpriteFactory.Instance.LoadAllTextures(this.Content);
-            ////Console.Log("load 7");
-            //Sound.Instance.LoadAllSounds(this.Content);
-            ////Console.Log("load 8");
-            ////Font.Instance.LoadAllFonts(this.Content);
-            ////Console.Log("done load");
+            //var taskList = new[]
+            //{
+            //    LinkSpriteFactory.Instance.LoadAllTextures(this.Content),
+            //    ItemSpriteFactory.Instance.LoadAllTextures(this.Content),
+            //    HUDSpriteFactory.Instance.LoadAllTextures(this.Content),
+            //    LevelMapSpriteFactory.Instance.LoadAllTextures(this.Content),
+            //    BossSpriteFactory.Instance.LoadAllTextures(this.Content),
+            //    NPCSpriteFactory.Instance.LoadAllTextures(this.Content),
+            //    EnemySpriteFactory.Instance.LoadAllTextures(this.Content),
+            //    LinkItemSpriteFactory.Instance.LoadAllTextures(this.Content),
+            //    Font.Instance.LoadAllFonts(this.Content),
+            //    //Content.LoadAsync<SpriteFont>("LoZ")
+            //};
 
-            var taskList = new[]
-            {
-                LinkSpriteFactory.Instance.LoadAllTextures(this.Content),
-                ItemSpriteFactory.Instance.LoadAllTextures(this.Content),
-                HUDSpriteFactory.Instance.LoadAllTextures(this.Content),
-                LevelMapSpriteFactory.Instance.LoadAllTextures(this.Content),
-                BossSpriteFactory.Instance.LoadAllTextures(this.Content),
-                NPCSpriteFactory.Instance.LoadAllTextures(this.Content),
-                EnemySpriteFactory.Instance.LoadAllTextures(this.Content),
-                LinkItemSpriteFactory.Instance.LoadAllTextures(this.Content),
-                Font.Instance.LoadAllFonts(this.Content),
-                //Content.LoadAsync<SpriteFont>("LoZ")
-            };
+            //Task t = Task.WhenAll(taskList);
 
-            Task t = Task.WhenAll(taskList);
-
-            //font = await 
-
-            await t;
-
-            await Font.Instance.LoadAllFonts(this.Content);
+            //await t;
 
 
+            //Console.Log("loading 1");
 
-            if (t.Status == TaskStatus.RanToCompletion)
-            {
-                IsLoaded = true;
-            }
+            //if (t.Status == TaskStatus.RanToCompletion)
+            //{
+            //    Console.Log("loaded");
+            //    IsLoaded = true;
+            //    LevelManager.Init();
+            //    string initialPath = Constants.STARTING_LEVEL;
+            //    //initialPath = "2_5";
+            //    LevelManager.Load(initialPath);
+            //}
 
 
         }
@@ -153,23 +129,19 @@ namespace game_project
         {
             //Console.Log(IsLoaded);
 
-            if (!IsLoaded)
+            if (!GameContent.IsLoaded)
             {
                 //Console.Log("loading");
-
+                base.Update(gameTime);
+                return;
             }
 
             //i++;
             //if (i % 100 == 0)
             //{
-            //    //Console.Log("frame");
-            //    Console.Log(LevelManager.mapRoot.name);
-            //    var transform = LevelManager.currentLevel.Root.GetComponent<Transform>();
-            //    Console.Log(transform.position.X + ", " + transform.WorldPosition);
-            //    transform.position.X += 40;
-            //    Console.Log(transform.position.X + ", " + transform.WorldPosition);
+            //    Console.Log("frame");
             //}
-            // Update KeyboardController for Commands
+            //Update KeyboardController for Commands
             keyboard.Update();
 
             Input.GetState();
@@ -202,27 +174,42 @@ namespace game_project
                 frameCounter = 0;
             }
             frameCounter++;
-            //i++;
-            //GraphicsDevice.Clear(Color.IndianRed);
+
+
+            if (!GameContent.IsLoaded)
+            {
+                GraphicsDevice.Clear(Color.CornflowerBlue);
+                if (GameContent.IsBaseLoaded)
+                {
+                    var size = GameContent.Font.hudFont.MeasureString("Click on game area to start it!");
+
+                    spriteBatch.Begin();
+
+                    if (!GameContent.IsLoaded)
+                    {
+                        spriteBatch.DrawString(GameContent.Font.hudFont, "Zelda is loading: " + GameContent.Counter + " / " + GameContent.Max, new Vector2(20, 440 - size.Y - 10), Color.White);
+                        //spriteBatch.Draw(GameContent.Texture.Pixel, new Rectangle(20, 440, (int)(760 * (GameContent.Counter / (float)GameContent.Max)), 20), Color.White);
+                    }
+
+                    spriteBatch.End();
+                }
+
+                base.Draw(gameTime);
+                return;
+            }
+
+            GraphicsDevice.Clear(Color.IndianRed);
+
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp);
-            //spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null, Matrix.Identity);
-            //spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp);
+
             SpriteSystem.Draw(spriteBatch); // Draw all Sprite components
             ColliderSystem.Draw(spriteBatch); // Draw all Collider debug boxes
                                               //TextSystem.Draw(spriteBatch); // Draw all Text components
 
             //DrawShadowedString(hudFont, "FPS: " + frame, new Vector2(0.0f, 4f), Color.Yellow);
+            DrawShadowedString(GameContent.Font.hudFont, "FPS: " + frame, new Vector2(4f, 4f), Color.Yellow);
 
             spriteBatch.End();
-
-            ///*
-            //if (i % 30 == 0)
-            //{
-            //    //Debug.WriteLine(GameStateManager.State);
-            //    //    float frameRate = 1 / (float)gameTime.ElapsedGameTime.TotalSeconds;
-            //    //    Debug.WriteLine("frame rate: " + frameRate);
-            //}
-            //*/
 
             base.Draw(gameTime);
         }

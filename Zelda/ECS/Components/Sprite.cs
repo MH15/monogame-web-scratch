@@ -84,12 +84,12 @@ namespace game_project.ECS.Components
                     rotation,
                     new Vector2(0, 0),
                     sprite.spriteEffects,
-                    1f //Zpos
+                    1f // Zpos
                 );
             }
             else
             {
-                Console.Log("null or invisible " + entity.name);
+                //Console.Log("null or invisible " + entity.name);
             }
         }
     }

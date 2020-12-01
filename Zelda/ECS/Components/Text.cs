@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using static game_project.Constants;
 using game_project.Sounds;
+using Bridge.Utils;
 
 namespace game_project.ECS.Components
 {
@@ -17,8 +18,8 @@ namespace game_project.ECS.Components
         private float timeSinceLastIncrement = 0;
         private bool animate { get; set; }
         public Color color { get; set; }
-        public SpriteFont font = Font.GetFont(Font.FontFiles.LoZ);
-        //public static SpriteFont font;
+        //public SpriteFont font = Font.GetFont(Font.FontFiles.LoZ);
+        public SpriteFont font;
         //public SpriteFont font = Game1.font;
         public TextHorizontal TextHorzAlign = Constants.TextHorizontal.LeftAligned;
         public TextVertical TextVertAlign = Constants.TextVertical.TopAligned;
@@ -34,6 +35,10 @@ namespace game_project.ECS.Components
         public Text(string givenString, bool givenAnimate)
         {
             TextSystem.Register(this);
+
+            font = GameContent.Font.hudFont;
+            //Bridge.Utils.Console.Log("font: " + font.ToString());
+
             StringToWrite = givenString;
             animate = givenAnimate;
             if (!animate)

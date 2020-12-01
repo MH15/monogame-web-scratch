@@ -34,7 +34,7 @@ namespace game_project.Levels
 
         static LevelManager()
         {
-            Init();
+            //Init();
         }
 
         public static void Init()
@@ -60,7 +60,7 @@ namespace game_project.Levels
             Console.Log("tits");
 
             retryDialog = new RetryDialog();
-            //retryDialog.State = EntityStates.Disabled;
+            retryDialog.State = EntityStates.Disabled;
 
             // UI Backdrop
             Console.Log("making backdrop");
@@ -68,10 +68,12 @@ namespace game_project.Levels
             Scene.Add(backdrop);
             var backdropTransform = backdrop.GetComponent<Transform>();
             backdropTransform.AddChild(mapRoot);
+            Console.Log("made backdrop");
         }
 
         public static void Load(string name, bool useCache = true)
         {
+            Console.Log("LevelManager.Load()");
             if (cache.ContainsKey(name) && useCache)
             {
                 Debug.WriteLine("loading from cache: " + name);
@@ -117,7 +119,7 @@ namespace game_project.Levels
 
         public static void Defeat()
         {
-            Console.Log("defeat");
+            Console.Log("defeat: " + deadText.name);
             deadText.State = EntityStates.Playing;
             Console.Log("1");
             mapRoot.State = EntityStates.Paused;

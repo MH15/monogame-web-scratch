@@ -10,6 +10,9 @@ namespace game_project.GameObjects.Writing
     {
         public TextShadowEntity(Vector2 pos, string stringToWrite, Color? color = null, float scale = 1f, bool animate = false)
         {
+
+            name = "TextShadowEntity{'" + stringToWrite + "'}";
+
             //Console.Log("loading TextShadowEntity");
             TextEntity top = new TextEntity(pos, stringToWrite, color, scale);
             TextEntity shadow = new TextEntity(pos + new Vector2(5, 5), stringToWrite, Color.Black, scale);

@@ -3,13 +3,15 @@ using game_project.ECS;
 using game_project.ECS.Components;
 using game_project.GameObjects.Block;
 using game_project.GameObjects.Enemy;
+using game_project.GameObjects.Items;
 using game_project.GameObjects.Link;
+using game_project.Sounds;
 
 namespace game_project.CollisionResponse
 {
     public class BombCollisionResponse : ECS.Components.CollisionResponse
     {
-
+        bool EnemyCollided;
         public BombCollisionResponse(Entity entity) : base(entity)
         {
 
@@ -47,20 +49,25 @@ namespace game_project.CollisionResponse
 
         public override void ResolveCollision(EnemyCollisionResponse other)
         {
-            Enemy enemy = (Enemy)other.entity;
+            if (!EnemyCollided)
+            {
+                Enemy enemy = (Enemy)other.entity;
 
-            // take damage
-            if (enemy.GetType().Equals(typeof(game_project.GameObjects.Enemy.Stalfo)))
-            {
-                enemy.GetComponent<StalfoHealthManagement>().DeductHealth(Constants.BOMB_DAMAGE);
-            }
-            else if (enemy.GetType().Equals(typeof(game_project.GameObjects.Enemy.Aquamentus)))
-            {
-                enemy.GetComponent<AquamentusHealthManagement>().DeductHealth(Constants.BOMB_DAMAGE);
-            }
-            else
-            {
-                enemy.GetComponent<EnemyHealthManagement>().DeductHealth(Constants.BOMB_DAMAGE);
+                Sound.PlaySound(Sound.SoundEffects.Enemy_Hit, entity, !Sound.SOUND_LOOPS);
+                // take damage
+                if (enemy.GetType().Equals(typeof(Stalfo)))
+                {
+                    enemy.GetComponent<StalfoHealthManagement>().DeductHealth(Constants.BOMB_DAMAGE);
+                }
+                else if (enemy.GetType().Equals(typeof(Aquamentus)))
+                {
+                    enemy.GetComponent<AquamentusHealthManagement>().DeductHealth(Constants.BOMB_DAMAGE);
+                }
+                else
+                {
+                    enemy.GetComponent<EnemyHealthManagement>().DeductHealth(Constants.BOMB_DAMAGE);
+                }
+                EnemyCollided = true;
             }
         }
 

@@ -28,7 +28,7 @@ namespace game_project.GameObjects.GUI
                     entity.GetComponent<Sprite>().SetVisible(true);
                     visible = true;
 
-                    LevelManager.backdrop.minimap.GetComponent<MinimapDisplay>().BossRoomVisible();
+                    LevelManager.backdrop.Minimap.GetComponent<MinimapDisplay>().BossRoomVisible();
                 }
             }
         }

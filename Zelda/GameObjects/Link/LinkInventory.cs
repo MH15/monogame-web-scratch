@@ -7,6 +7,8 @@ using game_project.GameObjects.Items;
 using game_project.GameObjects.Projectiles;
 using game_project.Sounds;
 using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
 using static game_project.GameObjects.Items.ItemInventory;
 
 namespace game_project.GameObjects.Link
@@ -19,6 +21,8 @@ namespace game_project.GameObjects.Link
         public List<PassiveItems> passiveInventory;
         public List<DungeonItems> dungeonInventory;
         private UseInventory currentB = UseInventory.BOMB;
+        private WeaponTypes currentWeapon = WeaponTypes.WOODEN_SWORD;
+        private BoomerangTypes currentBoomerang = BoomerangTypes.WOODEN_BOOMERANG;
 
         // bomb / item usage
         private Vector2 bombAdd = new Vector2(0, 0);
@@ -65,29 +69,49 @@ namespace game_project.GameObjects.Link
             currentB = selected;
         }
 
+        public WeaponTypes GetCurrentWeapon()
+        {
+            return currentWeapon;
+        }
+
+        public void UpdateCurrentWeapon(WeaponTypes selected)
+        {
+            currentWeapon = selected;
+        }
+
+        public BoomerangTypes GetCurrentBoomerang()
+        {
+            return currentBoomerang;
+        }
+
+        public void UpdateCurrentBoomerang(BoomerangTypes selected)
+        {
+            currentBoomerang = selected;
+        }
+
         public void LinkUseBItem()
         {
             switch (GetBKey())
             {
-                case ItemInventory.UseInventory.BOMB:
-                    if (useInventory[(int)ItemInventory.UseInventory.BOMB].amount.current > 0)
+                case UseInventory.BOMB:
+                    if (useInventory[(int)UseInventory.BOMB].amount.current > 0)
                     {
                         Sound.PlaySound(Sound.SoundEffects.Bomb_Drop, entity, !Sound.SOUND_LOOPS); // No way to tell if it's a bomb from item class, so we play it from here
-                        Item bomb = new Item(ItemSpriteFactory.Instance.CreateBomb(), this.entity.GetComponent<Transform>().position + bombAdd);
+                        Item bomb = new Item(ItemSpriteFactory.Instance.CreateBomb(), entity.GetComponent<Transform>().WorldPosition + bombAdd);
                         bomb.AddComponent(new BombBehaviorScript());
                         Scene.Add(bomb);
-                        useInventory[(int)ItemInventory.UseInventory.BOMB].amount.AddCurrent(-1);
+                        useInventory[(int)UseInventory.BOMB].amount.AddCurrent(-1);
 
                         // Console.WriteLine("Bomb Amount = " + inventory.useInventory[(int)LinkInventory.UseInventory.BOMB].amount);
                     }
                     // TESTING ONLY
                     UpdateBKey(ItemInventory.UseInventory.BOOMERANG);
                     break;
-                case ItemInventory.UseInventory.BOOMERANG:
-                    if (useInventory[(int)ItemInventory.UseInventory.BOOMERANG].amount.current > 0)
+                case UseInventory.BOOMERANG:
+                    if (useInventory[(int)UseInventory.BOOMERANG].amount.current > 0)
                     {
                         new Boomerang(LinkBehavior.linkDirection, entity);
-                        useInventory[(int)ItemInventory.UseInventory.BOOMERANG].amount.AddCurrent(-1);
+                        useInventory[(int)UseInventory.BOOMERANG].amount.AddCurrent(-1);
 
                         // Console.WriteLine("Bomb Amount = " + inventory.useInventory[(int)LinkInventory.UseInventory.BOMB].amount);
                     }
@@ -102,7 +126,7 @@ namespace game_project.GameObjects.Link
 
         public void AddBombs()
         {
-            useInventory[(int)ItemInventory.UseInventory.BOMB].amount.AddCurrent(Constants.BOMB_PICKUP_COUNT);
+            useInventory[(int)UseInventory.BOMB].amount.AddCurrent(Constants.BOMB_PICKUP_COUNT);
         }
 
         public void AddUseableItem(int itemIndex)
@@ -132,6 +156,11 @@ namespace game_project.GameObjects.Link
         public int GetDungeonItemCount(int itemIndex)
         {
             return dungeonInventory[itemIndex].amount.current;
+        }
+
+        public void SetBombPos(Vector2 bombPos)
+        {
+            bombAdd = bombPos;
         }
     }
 }

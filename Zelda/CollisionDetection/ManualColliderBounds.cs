@@ -1,5 +1,4 @@
-﻿using BridgeGameProject;
-using game_project.ECS.Components;
+﻿using game_project.ECS.Components;
 
 namespace game_project.CollisionDetection
 {

@@ -1,6 +1,5 @@
-﻿using BridgeGameProject;
-using game_project.ECS.Components;
-using Rectangle = Microsoft.Xna.Framework.Rectangle;
+﻿using game_project.ECS.Components;
+using Microsoft.Xna.Framework;
 
 namespace game_project.CollisionDetection
 {

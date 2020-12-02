@@ -1,5 +1,4 @@
-﻿using BridgeGameProject;
-using game_project.CollisionResponse;
+﻿using game_project.CollisionResponse;
 using game_project.Content.Sprites.SpriteFactories;
 using game_project.ECS;
 using game_project.ECS.Components;

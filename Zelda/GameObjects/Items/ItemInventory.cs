@@ -35,6 +35,18 @@ namespace game_project.GameObjects.Items
             KEYS,
             BOSS_KEY
         }
+
+        public enum WeaponTypes
+        {
+            WOODEN_SWORD,
+            MAGIC_SWORD
+        }
+
+        public enum BoomerangTypes
+        {
+            WOODEN_BOOMERANG,
+            MAGIC_BOOMERANG
+        }
     }
 
     public class UseableItems
@@ -55,7 +67,7 @@ namespace game_project.GameObjects.Items
         }
         public Types type;
         public Amount amount;
-        
+
         // default
         public UseableItems() { }
         // set type and amount
@@ -132,7 +144,7 @@ namespace game_project.GameObjects.Items
                 current = max;
             }
         }
-        
+
         // update max if you never need to (like inventory upgrades)
         public void SetMax(int value)
         {

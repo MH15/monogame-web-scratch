@@ -64,7 +64,6 @@ namespace game_project.ECS.Components
                     Console.Log("Spritesheet null @ " + entity.name);
                     return;
                 }
-                //Console.Log("Spritesheet exists @ " + entity.name);
                 var transform = entity.GetComponent<Transform>();
                 var location = transform.WorldPosition;
                 if (sprite.offsets != null)
@@ -80,11 +79,6 @@ namespace game_project.ECS.Components
                 float scalar = sprite.scalar;
                 Rectangle frame = sprite.frames[sprite.currentFrame];
 
-                //i++;
-                //if (entity.name == "LevelParent" && i % 30 == 0)
-                //{
-                //    Console.Log("local: " + transform.position + ", world: " + transform.WorldPosition);
-                //}
 
                 spriteBatch.Draw(sprite.spriteSheet,
                     new Rectangle((int)location.X, (int)location.Y, (int)(frame.Width * scalar), (int)(frame.Height * scalar)),

@@ -9,7 +9,6 @@ namespace game_project.ECS.Systems
     {
         public static void Draw(SpriteBatch spriteBatch)
         {
-            //Console.Log("sprite count: " + components.Count);
             foreach (Sprite component in components)
             {
                 // Only components that are attached to an entity should draw

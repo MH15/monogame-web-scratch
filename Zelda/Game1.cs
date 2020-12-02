@@ -1,3 +1,6 @@
+#define WEB
+//#undef WEB
+
 using game_project.Content.Sprites.SpriteFactories;
 using game_project.Controllers;
 using game_project.ECS;
@@ -25,14 +28,6 @@ namespace game_project
         // Required to exit from other folders
         public static Game1 self;
 
-        private Entity link;
-
-        public bool IsLoaded = false;
-        public int LoadCounter = 0;
-
-        public static SpriteFont font;
-
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this)
@@ -41,7 +36,10 @@ namespace game_project
                 PreferredBackBufferHeight = Constants.SCREEN_PREFERRED_HEIGHT_PX
             };
             graphics.ApplyChanges();
-            //Window.Position = Constants.SCREEN_WINDOW_ORIGIN;
+#if WEB
+#else
+            Window.Position = Constants.SCREEN_WINDOW_ORIGIN;
+#endif
             viewport = graphics.GraphicsDevice.Viewport;
             Content.RootDirectory = "Content";
             self = this;
@@ -50,12 +48,6 @@ namespace game_project
         protected override void Initialize()
         {
             keyboard = new KeyboardController();
-
-            GameStateManager.State = GameStates.Playing;
-            //string initialPath = Constants.STARTING_LEVEL;
-            //LevelManager.Load(initialPath);
-
-            //ColliderSystem.DrawDebug = false;
             base.Initialize();
         }
 
@@ -71,42 +63,8 @@ namespace game_project
         {
             await GameContent.Init(Content, GraphicsDevice);
             string initialPath = Constants.STARTING_LEVEL;
-            //    //initialPath = "2_5";
-            Console.Log("load");
             LevelManager.Load(initialPath);
-
-            //var taskList = new[]
-            //{
-            //    LinkSpriteFactory.Instance.LoadAllTextures(this.Content),
-            //    ItemSpriteFactory.Instance.LoadAllTextures(this.Content),
-            //    HUDSpriteFactory.Instance.LoadAllTextures(this.Content),
-            //    LevelMapSpriteFactory.Instance.LoadAllTextures(this.Content),
-            //    BossSpriteFactory.Instance.LoadAllTextures(this.Content),
-            //    NPCSpriteFactory.Instance.LoadAllTextures(this.Content),
-            //    EnemySpriteFactory.Instance.LoadAllTextures(this.Content),
-            //    LinkItemSpriteFactory.Instance.LoadAllTextures(this.Content),
-            //    Font.Instance.LoadAllFonts(this.Content),
-            //    //Content.LoadAsync<SpriteFont>("LoZ")
-            //};
-
-            //Task t = Task.WhenAll(taskList);
-
-            //await t;
-
-
-            //Console.Log("loading 1");
-
-            //if (t.Status == TaskStatus.RanToCompletion)
-            //{
-            //    Console.Log("loaded");
-            //    IsLoaded = true;
-            //    LevelManager.Init();
-            //    string initialPath = Constants.STARTING_LEVEL;
-            //    //initialPath = "2_5";
-            //    LevelManager.Load(initialPath);
-            //}
-
-
+            Console.Log("done loading");
         }
 
         protected override void UnloadContent()
@@ -118,12 +76,10 @@ namespace game_project
             ColliderSystem.Clear();
             BehaviorScriptSystem.Clear();
             SpriteSystem.Clear();
-            //TextSystem.Clear();
+            TextSystem.Clear();
 
             Scene.Clear();
         }
-
-        private int i = 0;
 
         protected override void Update(GameTime gameTime)
         {
@@ -136,11 +92,6 @@ namespace game_project
                 return;
             }
 
-            //i++;
-            //if (i % 100 == 0)
-            //{
-            //    Console.Log("frame");
-            //}
             //Update KeyboardController for Commands
             keyboard.Update();
 
@@ -154,8 +105,7 @@ namespace game_project
             ColliderSystem.Check();
             SpriteSystem.Update(gameTime);
             TextSystem.Update(gameTime);
-            ////Sound.Update(gameTime);
-            ///
+            //Sound.Update(gameTime);
 
             base.Update(gameTime);
         }

@@ -20,24 +20,17 @@ namespace game_project.ECS.Components
         public Color color { get; set; }
         //public SpriteFont font = Font.GetFont(Font.FontFiles.LoZ);
         public SpriteFont font;
-        //public SpriteFont font = Game1.font;
         public TextHorizontal TextHorzAlign = Constants.TextHorizontal.LeftAligned;
         public TextVertical TextVertAlign = Constants.TextVertical.TopAligned;
         public float scale { get; set; } = 1f;
         private Vector2 origin = new Vector2(0, 0);
         public Rectangle textBox { get; set; }
 
-        //public static Text()
-        //{
-
-        //}
-
         public Text(string givenString, bool givenAnimate)
         {
             TextSystem.Register(this);
 
             font = GameContent.Font.hudFont;
-            //Bridge.Utils.Console.Log("font: " + font.ToString());
 
             StringToWrite = givenString;
             animate = givenAnimate;

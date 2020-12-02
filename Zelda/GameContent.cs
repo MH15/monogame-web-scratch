@@ -28,15 +28,15 @@ namespace game_project
             IsBaseLoaded = true;
 
 
-            await LinkSpriteFactory.Instance.LoadAllTextures(content);
-            await ItemSpriteFactory.Instance.LoadAllTextures(content);
-            await HUDSpriteFactory.Instance.LoadAllTextures(content);
-            await LevelMapSpriteFactory.Instance.LoadAllTextures(content);
-            await BossSpriteFactory.Instance.LoadAllTextures(content);
-            await NPCSpriteFactory.Instance.LoadAllTextures(content);
-            await EnemySpriteFactory.Instance.LoadAllTextures(content);
-            await LinkItemSpriteFactory.Instance.LoadAllTextures(content);
-            //Content.LoadAsync<SpriteFont>("LoZ")
+            await LinkSpriteFactory.Instance.LoadAllTextures(content); Counter++;
+            await ItemSpriteFactory.Instance.LoadAllTextures(content); Counter++;
+            await HUDSpriteFactory.Instance.LoadAllTextures(content); Counter++;
+            await LevelMapSpriteFactory.Instance.LoadAllTextures(content); Counter++;
+            await BossSpriteFactory.Instance.LoadAllTextures(content); Counter++;
+            await NPCSpriteFactory.Instance.LoadAllTextures(content); Counter++;
+            await EnemySpriteFactory.Instance.LoadAllTextures(content); Counter++;
+            await LinkItemSpriteFactory.Instance.LoadAllTextures(content); Counter++;
+            //await Sound.Instance.LoadAllSounds(content);
 
             LevelManager.Init();
 

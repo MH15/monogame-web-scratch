@@ -65,6 +65,7 @@ namespace game_project
 
         private async void LoadStuff()
         {
+            Console.Log("yer");
             await GameContent.Init(Content, GraphicsDevice);
             string initialPath = Constants.STARTING_LEVEL;
             LevelManager.Load(initialPath);

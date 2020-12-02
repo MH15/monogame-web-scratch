@@ -39,6 +39,7 @@ namespace game_project.Levels
 
         public static void Init()
         {
+            Console.Log("Init()");
             // Game Layer
             mapRoot = new LevelParent();
             cache = new Dictionary<string, Level>();
@@ -46,6 +47,7 @@ namespace game_project.Levels
             //currentLevelPath = null;
             currentLevel = null;
             previousLevel = currentLevel;
+            Console.Log("game layer");
 
             // UI Layer
             pausedText = new TextShadowEntity(new Vector2(340, 540), "Paused", Color.White);
@@ -59,12 +61,15 @@ namespace game_project.Levels
 
             retryDialog = new RetryDialog();
             retryDialog.State = EntityStates.Disabled;
+            Console.Log("ui layer");
 
             // UI Backdrop
             backdrop = new Backdrop();
             Scene.Add(backdrop);
-            var backdropTransform = backdrop.GetComponent<Transform>();
-            backdropTransform.AddChild(mapRoot);
+            //var backdropTransform = backdrop.GetComponent<Transform>();
+            //backdropTransform.AddChild(mapRoot);
+            Console.Log("backdrop");
+
         }
 
         public static void Load(string name, bool useCache = true)

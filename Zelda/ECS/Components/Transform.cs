@@ -1,5 +1,4 @@
-﻿using Bridge.Utils;
-using game_project.ECS.Systems;
+﻿using game_project.ECS.Systems;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
@@ -15,10 +14,6 @@ namespace game_project.ECS.Components
         {
             get { return GetWorldPosition(); }
         }
-        //public Vector2 WorldPosition
-        //{
-        //    get { return CalculateWorldPosition(); }
-        //}
         public float layerDepth = 0f;
         public Vector2 scale = Vector2.Zero;
         public float rotation = 0;
@@ -72,48 +67,25 @@ namespace game_project.ECS.Components
             // on the TransformSystem.Update(), instead of on every
             // call of Transform.WorldPosition;
         }
-        int i = 0;
-
-        private Vector2 GetParentPosition()
-        {
-            Vector2 parentPosition = Vector2.Zero;
-
-            if (Parent != null)
-            {
-                parentPosition += Parent.GetParentPosition();
-            }
-
-            return parentPosition;
-        }
 
         private Vector2 GetWorldPosition()
         {
-            i++;
-
             // Reset the local transformation matrix
             localMatrix = Matrix.Identity;
             // Create local transformation matrix from set position and rotation values.
             float rad = MathHelper.ToRadians(rotation);
             localMatrix *= Matrix.CreateTranslation(position.X, position.Y, 0f);
-            localMatrix *= Matrix.CreateRotationZ(rad);
+            //localMatrix *= Matrix.CreateRotationZ(rad);
             // Apply transformation matrix to Zero vector to get world position.
             worldPosition = Vector2.Transform(Vector2.Zero, GetWorldMatrix());
-            return worldPosition;
-        }
-
-        private Vector2 CalculateWorldPosition()
-        {
-            Vector2 parentPosition = GetParentPosition();
-            worldPosition = position + parentPosition;
             return worldPosition;
         }
 
 
         public override void Update(GameTime gameTime)
         {
-            //worldPosition = CalculateWorldPosition();
-            lastPosition = position;
             GetWorldPosition();
+            lastPosition = position;
         }
     }
 

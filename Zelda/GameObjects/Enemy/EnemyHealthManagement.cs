@@ -7,7 +7,7 @@ namespace game_project.GameObjects.Enemy
 {
     class EnemyHealthManagement : BehaviorScript
     {
-        // Overall tracker for enemy's health (in half-hearts to avoid floating point weirdness)
+        // Overall tracker for enemy's health
         public int health;
 
         public EnemyHealthManagement(int startingHealth)
@@ -17,7 +17,7 @@ namespace game_project.GameObjects.Enemy
 
         public virtual void DeductHealth(int healthToDeduct)
         {
-            // Console.WriteLine("Deducting " + healthToDeduct.ToString() + " from Link.");
+            // Console.WriteLine("Deducting " + healthToDeduct.ToString() + " from Enemy.");
             health -= healthToDeduct;
         }
 

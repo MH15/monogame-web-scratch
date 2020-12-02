@@ -337,6 +337,15 @@ namespace game_project.Content.Sprites.SpriteFactories
             };
             return new BasicSprite(HUDSpriteSheet, frames);
         }
+        public BasicSprite CreateSelectedItemChooser()
+        {
+            List<Rectangle> frames = new List<Rectangle>
+            {
+                hudSpriteFrames.frames["SelectedItemFrameRed"],
+                hudSpriteFrames.frames["SelectedItemFrameBlue"]
+            };
+            return new BasicSprite(HUDSpriteSheet, frames);
+        }
 
         public BasicSprite CreateMapItem()
         {

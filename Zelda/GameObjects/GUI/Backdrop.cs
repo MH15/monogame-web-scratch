@@ -14,8 +14,18 @@ namespace game_project.GameObjects.GUI
 {
     public class Backdrop : Entity
     {
-        public Minimap minimap { get; }
-        public static Entity Bow { get; } = new HUDItem(HUDSpriteFactory.Instance.CreateBow(), new Vector2(680, 189), Constants.HUD_BOW_SCALE, false);
+        public Minimap Minimap { get; }
+        public Entity Bow { get; } = new HUDItem(HUDSpriteFactory.Instance.CreateBow(), new Vector2(680, 189), Constants.HUD_BOW_SCALE, false);
+        public int CurrentItemSelectorIndex { get; set; } = 1;
+        public int CurrentMaxItemCount { get; set; } = 2;
+        public readonly List<Vector2> ItemSelectorPositions = new List<Vector2>()
+        {
+            new Vector2(508, 181),
+            new Vector2(584, 181),
+            new Vector2(660, 181),
+            new Vector2(736, 181),
+            new Vector2(812, 181)
+        };
         public Backdrop()
         {
 
@@ -108,8 +118,8 @@ namespace game_project.GameObjects.GUI
             var map = new Map();
             transform.AddChild(map);
 
-            minimap = new Minimap(new Vector2(68, 776), false);
-            transform.AddChild(minimap);
+            Minimap = new Minimap(new Vector2(68, 776), false);
+            transform.AddChild(Minimap);
         }
     }
 }

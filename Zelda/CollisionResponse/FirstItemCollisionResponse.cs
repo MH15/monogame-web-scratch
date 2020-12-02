@@ -4,6 +4,7 @@ using game_project.ECS.Components;
 using game_project.GameObjects.GUI;
 using game_project.GameObjects.Items;
 using game_project.GameObjects.Link;
+using game_project.Levels;
 using Microsoft.Xna.Framework;
 
 namespace game_project.CollisionResponse
@@ -23,7 +24,7 @@ namespace game_project.CollisionResponse
 
         public override void ResolveCollision(LinkCollisionResponse other)
         {
-            Link link = (Link) other.entity;
+            Link link = (Link)other.entity;
             LinkInventory linkInventory = link.GetComponent<LinkInventory>();
 
             // update item inventory numbers
@@ -32,7 +33,7 @@ namespace game_project.CollisionResponse
                 case "bow":
                     linkInventory.AddUseableItem((int)ItemInventory.UseInventory.BOW);
                     // Console.WriteLine("Bow = " + linkInventory.GetUseableItemCount((int)ItemInventory.UseInventory.BOW));
-                    Backdrop.Bow.GetComponent<Sprite>().SetVisible(true);
+                    LevelManager.backdrop.Bow.GetComponent<Sprite>().SetVisible(true);
                     break;
                 case "raft":
                     linkInventory.AddPassiveItem((int)ItemInventory.PassiveIventory.RAFT);

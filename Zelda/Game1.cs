@@ -163,10 +163,10 @@ namespace game_project
 
             SpriteSystem.Draw(spriteBatch); // Draw all Sprite components
             ColliderSystem.Draw(spriteBatch); // Draw all Collider debug boxes
-                                              //TextSystem.Draw(spriteBatch); // Draw all Text components
+            TextSystem.Draw(spriteBatch); // Draw all Text components
 
             //DrawShadowedString(hudFont, "FPS: " + frame, new Vector2(0.0f, 4f), Color.Yellow);
-            DrawShadowedString(GameContent.Font.hudFont, "FPS: " + frame, new Vector2(4f, 4f), Color.Yellow);
+            DrawShadowedString(GameContent.Font.hudFont, "FPS: " + frame, new Vector2(350f, 40f), Color.Yellow);
 
             spriteBatch.End();
 

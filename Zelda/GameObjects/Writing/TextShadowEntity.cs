@@ -1,5 +1,4 @@
-﻿using Bridge.Utils;
-using game_project.ECS;
+﻿using game_project.ECS;
 using game_project.ECS.Components;
 using Microsoft.Xna.Framework;
 using System.Diagnostics;

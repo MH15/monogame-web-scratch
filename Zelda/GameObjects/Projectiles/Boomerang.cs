@@ -11,7 +11,7 @@ namespace game_project.GameObjects.Projectiles
         public Boomerang(Constants.Direction direction, Entity entity)
         {
             var entityTransform = entity.GetComponent<Transform>();
-            GetComponent<Transform>().position = entityTransform.position;
+            GetComponent<Transform>().position = entityTransform.WorldPosition;
 
             Constants.SetLayerDepth(this, Constants.LayerDepth.Item);
 

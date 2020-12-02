@@ -29,6 +29,10 @@ namespace game_project.Content.Sprites.SpriteFactories
         {
             TileSpriteSheet = await content.LoadAsync<Texture2D>("NES - The Legend of Zelda - Dungeon Tileset");
         }
+        public async Task LoadAllTexturesAsync(ContentManager content)
+        {
+            TileSpriteSheet = await content.LoadAsync<Texture2D>("NES - The Legend of Zelda - Dungeon Tileset");
+        }
 
         public BasicSprite CreateExterior()
         {

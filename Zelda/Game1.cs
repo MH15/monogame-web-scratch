@@ -58,7 +58,11 @@ namespace game_project
 
         private async void LoadStuff()
         {
-            await GameContent.Init(Content, GraphicsDevice);
+#if WEB
+            await GameContent.InitAsync(Content, GraphicsDevice);
+#else
+            GameContent.Init(Content, GraphicsDevice);
+#endif
             string initialPath = Constants.STARTING_LEVEL;
             LevelManager.Load(initialPath);
             Console.Log("done loading");
@@ -134,7 +138,15 @@ namespace game_project
 
                     if (!GameContent.IsLoaded)
                     {
-                        spriteBatch.DrawString(GameContent.Font.hudFont, "Zelda is loading: " + GameContent.Counter + " / " + GameContent.Max, new Vector2(20, 440 - size.Y - 10), Color.White);
+                        spriteBatch.DrawString(GameContent.Font.hudFont,
+                            "Zelda is loading: " + GameContent.Counter + " / " + GameContent.Max,
+                            new Vector2(20, 440 - size.Y - 10),
+                            Color.White,
+                            0f,
+                            Vector2.Zero,
+                            .5f,
+                            SpriteEffects.None,
+                            1f);
                         //spriteBatch.Draw(GameContent.Texture.Pixel, new Rectangle(20, 440, (int)(760 * (GameContent.Counter / (float)GameContent.Max)), 20), Color.White);
                     }
 
@@ -163,8 +175,9 @@ namespace game_project
 
         private void DrawShadowedString(SpriteFont font, string value, Vector2 position, Color color)
         {
-            spriteBatch.DrawString(font, value, position + new Vector2(1.0f, 1.0f), Color.Black);
-            spriteBatch.DrawString(font, value, position, color);
+            spriteBatch.DrawString(font, value, position + new Vector2(1.0f, 1.0f), Color.Black, 0, Vector2.Zero, .3f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(font, value, position, color, 0, Vector2.Zero, .3f, SpriteEffects.None, 1f);
+
         }
     }
 

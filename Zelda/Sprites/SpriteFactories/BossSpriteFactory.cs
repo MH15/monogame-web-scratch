@@ -29,6 +29,10 @@ namespace game_project.Content.Sprites.SpriteFactories
         {
             BossSpriteSheet = await content.LoadAsync<Texture2D>("NES - The Legend of Zelda - Bosses");
         }
+        public async Task LoadAllTexturesAsync(ContentManager content)
+        {
+            BossSpriteSheet = await content.LoadAsync<Texture2D>("NES - The Legend of Zelda - Bosses");
+        }
         public BasicSprite CreateAquamentus()
         {
             List<Rectangle> frames = new List<Rectangle>

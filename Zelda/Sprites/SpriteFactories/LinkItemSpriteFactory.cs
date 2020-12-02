@@ -29,6 +29,11 @@ namespace game_project.Content.Sprites.SpriteFactories
             LinkSpriteSheet = await content.LoadAsync<Texture2D>("NES - The Legend of Zelda - Link");
         }
 
+        public async Task LoadAllTexturesAsync(ContentManager content)
+        {
+            LinkSpriteSheet = await content.LoadAsync<Texture2D>("NES - The Legend of Zelda - Link");
+        }
+
         public BasicSprite CreateWoodenSwordUp()
         {
             List<Rectangle> frames = new List<Rectangle>

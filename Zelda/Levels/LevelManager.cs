@@ -116,13 +116,9 @@ namespace game_project.Levels
 
         public static void Defeat()
         {
-            Console.Log("defeat: " + deadText.name);
             deadText.State = EntityStates.Playing;
-            Console.Log("1");
             mapRoot.State = EntityStates.Paused;
-            Console.Log("2");
             GameStateManager.State = GameStates.Defeat;
-            Console.Log("3");
 
             // Show the "Retry?" dialog
             //retryDialog.State = EntityStates.Playing;

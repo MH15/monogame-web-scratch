@@ -29,6 +29,10 @@ namespace game_project.Content.Sprites.SpriteFactories
         {
             EnemySpriteSheet = await content.LoadAsync<Texture2D>("NES - The Legend of Zelda - Dungeon Enemies");
         }
+        public async Task LoadAllTexturesAsync(ContentManager content)
+        {
+            EnemySpriteSheet = await content.LoadAsync<Texture2D>("NES - The Legend of Zelda - Dungeon Enemies");
+        }
 
         public BasicSprite CreateStalfo()
         {

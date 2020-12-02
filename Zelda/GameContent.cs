@@ -20,6 +20,30 @@ namespace game_project
         public static int Counter;
         public static int Max = 9;
 
+#if WEB
+        public static async Task InitAsync(ContentManager content, GraphicsDevice graphics)
+        {
+            Counter = 0;
+            Font.hudFont = await content.LoadAsync<SpriteFont>("LoZ"); Counter++;
+            IsBaseLoaded = true;
+
+            await LinkSpriteFactory.Instance.LoadAllTexturesAsync(content); Counter++;
+            await ItemSpriteFactory.Instance.LoadAllTexturesAsync(content); Counter++;
+            await HUDSpriteFactory.Instance.LoadAllTexturesAsync(content); Counter++;
+            await LevelMapSpriteFactory.Instance.LoadAllTexturesAsync(content); Counter++;
+            await BossSpriteFactory.Instance.LoadAllTexturesAsync(content); Counter++;
+            await NPCSpriteFactory.Instance.LoadAllTexturesAsync(content); Counter++;
+            await EnemySpriteFactory.Instance.LoadAllTexturesAsync(content); Counter++;
+            await LinkItemSpriteFactory.Instance.LoadAllTexturesAsync(content); Counter++;
+            //await Sound.Instance.LoadAllSounds(content);
+
+            LevelManager.Init();
+
+
+            IsLoaded = true;
+        }
+#endif
+
         public static async Task Init(ContentManager content, GraphicsDevice graphics)
         {
             Counter = 0;

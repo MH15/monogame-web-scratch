@@ -30,6 +30,11 @@ namespace game_project.Content.Sprites.SpriteFactories
             ItemSpriteSheet = await content.LoadAsync<Texture2D>("NES - The Legend of Zelda - Items & Weapons");
         }
 
+        public async Task LoadAllTexturesAsync(ContentManager content)
+        {
+            ItemSpriteSheet = await content.LoadAsync<Texture2D>("NES - The Legend of Zelda - Items & Weapons");
+        }
+
         public BasicSprite CreateHeartFull()
         {
             List<Rectangle> frames = new List<Rectangle>

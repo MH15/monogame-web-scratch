@@ -29,6 +29,10 @@ namespace game_project.Content.Sprites.SpriteFactories
         {
             NPCSpriteSheet = await content.LoadAsync<Texture2D>("NES - The Legend of Zelda - NPCs");
         }
+        public async Task LoadAllTexturesAsync(ContentManager content)
+        {
+            NPCSpriteSheet = await content.LoadAsync<Texture2D>("NES - The Legend of Zelda - NPCs");
+        }
 
         public BasicSprite CreateOldMan1()
         {

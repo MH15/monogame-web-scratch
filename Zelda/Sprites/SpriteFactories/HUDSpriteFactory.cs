@@ -30,6 +30,11 @@ namespace game_project.Content.Sprites.SpriteFactories
             HUDSpriteSheet = await content.LoadAsync<Texture2D>("NES - The Legend of Zelda - HUD");
         }
 
+        public async Task LoadAllTexturesAsync(ContentManager content)
+        {
+            HUDSpriteSheet = await content.LoadAsync<Texture2D>("NES - The Legend of Zelda - HUD");
+        }
+
         public BasicSprite CreateMinimap()
         {
             List<Rectangle> frames = new List<Rectangle>

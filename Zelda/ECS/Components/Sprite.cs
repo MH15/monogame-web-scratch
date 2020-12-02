@@ -53,7 +53,6 @@ namespace game_project.ECS.Components
             }
         }
 
-        int i = 0;
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
@@ -61,17 +60,16 @@ namespace game_project.ECS.Components
             {
                 if (sprite.spriteSheet == null)
                 {
-                    Console.Log("Spritesheet null @ " + entity.name);
+                    //Console.Log("Spritesheet null @ " + entity.name);
                     return;
                 }
+
                 var transform = entity.GetComponent<Transform>();
                 var location = transform.WorldPosition;
                 if (sprite.offsets != null)
                 {
                     location += sprite.offsets[sprite.currentFrame] * 4;
                 }
-
-
 
                 var rotation = transform.rotation;
                 rotation = 0f;

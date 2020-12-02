@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using static game_project.Constants;
 using game_project.Sounds;
-using Bridge.Utils;
 
 namespace game_project.ECS.Components
 {
@@ -18,14 +17,12 @@ namespace game_project.ECS.Components
         private float timeSinceLastIncrement = 0;
         private bool animate { get; set; }
         public Color color { get; set; }
-        //public SpriteFont font = Font.GetFont(Font.FontFiles.LoZ);
         public SpriteFont font;
-        public TextHorizontal TextHorzAlign = Constants.TextHorizontal.LeftAligned;
-        public TextVertical TextVertAlign = Constants.TextVertical.TopAligned;
+        public TextHorizontal TextHorzAlign = TextHorizontal.LeftAligned;
+        public TextVertical TextVertAlign = TextVertical.TopAligned;
         public float scale { get; set; } = 1f;
         private Vector2 origin = new Vector2(0, 0);
         public Rectangle textBox { get; set; }
-
         public Text(string givenString, bool givenAnimate)
         {
             TextSystem.Register(this);
@@ -52,7 +49,7 @@ namespace game_project.ECS.Components
                 if (currentTextIndex != StringToWrite.Length)
                 {
                     timeSinceLastIncrement += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                    if (timeSinceLastIncrement >= Constants.TEXT_MOVEMENT_TIME)
+                    if (timeSinceLastIncrement >= TEXT_MOVEMENT_TIME)
                     {
                         CurrentString += StringToWrite[currentTextIndex];
                         currentTextIndex++;

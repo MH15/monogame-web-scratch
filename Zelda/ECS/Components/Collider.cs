@@ -38,7 +38,7 @@ namespace game_project.ECS.Components
         }
 
 
-        private bool TestCollision(Collider other)
+        public bool TestCollision(Collider other)
         {
             return colliderBounds.bounds.Intersects(other.colliderBounds.bounds);
         }

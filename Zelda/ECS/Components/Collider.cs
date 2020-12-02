@@ -1,5 +1,4 @@
-﻿using BridgeGameProject;
-using game_project.CollisionDetection;
+﻿using game_project.CollisionDetection;
 using game_project.ECS.Systems;
 using game_project.Sprites;
 using Microsoft.Xna.Framework;

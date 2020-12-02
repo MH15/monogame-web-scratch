@@ -1,6 +1,4 @@
 ﻿
-using BridgeGameProject;
-
 namespace game_project.CollisionDetection
 {
     interface IColliderBounds

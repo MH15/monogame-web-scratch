@@ -51,9 +51,6 @@ namespace game_project
         protected override void Initialize()
         {
             keyboard = new KeyboardController();
-            string initialPath = Constants.STARTING_LEVEL;
-            LevelManager.Load(initialPath);
-
             ColliderSystem.DrawDebug = false;
             base.Initialize();
         }
@@ -83,12 +80,10 @@ namespace game_project
             ColliderSystem.Clear();
             BehaviorScriptSystem.Clear();
             SpriteSystem.Clear();
-            //TextSystem.Clear();
+            TextSystem.Clear();
 
             Scene.Clear();
         }
-
-        private int i = 0;
 
         protected override void Update(GameTime gameTime)
         {

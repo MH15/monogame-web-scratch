@@ -1,6 +1,3 @@
-#define WEB
-//#undef WEB
-
 using game_project.Content.Sprites.SpriteFactories;
 using game_project.Controllers;
 using game_project.ECS;

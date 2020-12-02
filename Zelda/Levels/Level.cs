@@ -86,35 +86,13 @@ namespace game_project.Levels
             var transform = Root.GetComponent<Transform>();
             Root.name = csvFilePath;
 
-            //if (!ValidLevels.Contains(csvFilePath))
-            //{
-            //    throw new Exception("Attempted to load invalid Level: " + csvFilePath);
-            //}
-            //string[] lines = System.IO.File.ReadAllLines(@"../../../../Levels/Maps/" + csvFilePath + ".csv");
-            string[] lines = System.IO.File.ReadAllLines("Content/Maps/" + csvFilePath + ".csv");
 
-            //string[] lines = new string[]
-            //{
-            //    "block,0.0,0.0,0.0,0.0,wall,walls",
-            //    "block,2,2,0,0,none,entrance",
-            //    "block,7,0,0,0,door,updoor",
-            //    "block,7,9,0,0,door,downwall",
-            //    "block,0,4.5,0,0,door,leftdoor",
-            //    "block,14,4.5,0,0,door,rightdoor",
-            //    "block,3,3,0,0,rigid,bluestatueface",
-            //    "block,3,5,0,0,rigid,bluestatueface",
-            //    "block,3,7,0,0,rigid,bluestatueface",
-            //    "block,6,3,0,0,rigid,bluestatueface",
-            //    "block,6,5,0,0,rigid,bluestatueface",
-            //    "block,6,7,0,0,rigid,bluestatueface",
-            //    "block,9,3,0,0,rigid,bluestatuedragon",
-            //    "block,9,5,0,0,rigid,bluestatuedragon",
-            //    "block,9,7,0,0,rigid,bluestatuedragon",
-            //    "block,12,3,0,0,rigid,bluestatuedragon",
-            //    "block,12,5,0,0,rigid,bluestatuedragon",
-            //    "block,12,7,0,0,rigid,bluestatuedragon",
-            //    "# player,7.5,9,0,0",
-            //};
+            string basePath = @"../../../../Content/Maps/";
+#if WEB
+            basePath = "Content/Maps/";
+#endif
+            string[] lines = System.IO.File.ReadAllLines(basePath + csvFilePath + ".csv");
+
             for (int i = 0; i < lines.Length; i++)
             {
                 if (lines[i][0].ToString() != "#")

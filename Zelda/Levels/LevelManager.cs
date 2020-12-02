@@ -39,7 +39,7 @@ namespace game_project.Levels
 
         public static void Init()
         {
-            Console.Log("INTITITIITITI");
+            Console.Log("Init()");
             // Game Layer
             mapRoot = new LevelParent();
             cache = new Dictionary<string, Level>();

@@ -7,8 +7,6 @@ namespace game_project.Commands
     {
         public void Execute()
         {
-            //Console.Log("pause");
-            //Console.Log(GameStateManager.State);
             if (GameStateManager.State == GameStates.Paused)
             {
                 GameStateManager.State = GameStates.Playing;

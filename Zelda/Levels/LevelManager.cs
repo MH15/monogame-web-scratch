@@ -39,7 +39,6 @@ namespace game_project.Levels
 
         public static void Init()
         {
-            Console.Log("INTITITIITITI");
             // Game Layer
             mapRoot = new LevelParent();
             cache = new Dictionary<string, Level>();
@@ -70,7 +69,7 @@ namespace game_project.Levels
 
         public static void Load(string name, bool useCache = true)
         {
-            Console.Log("LevelManager.Load()");
+            //Console.Log("LevelManager.Load()");
             if (cache.ContainsKey(name) && useCache)
             {
                 Debug.WriteLine("loading from cache: " + name);
@@ -116,13 +115,9 @@ namespace game_project.Levels
 
         public static void Defeat()
         {
-            Console.Log("defeat: " + deadText.name);
             deadText.State = EntityStates.Playing;
-            Console.Log("1");
             mapRoot.State = EntityStates.Paused;
-            Console.Log("2");
             GameStateManager.State = GameStates.Defeat;
-            Console.Log("3");
 
             // Show the "Retry?" dialog
             //retryDialog.State = EntityStates.Playing;

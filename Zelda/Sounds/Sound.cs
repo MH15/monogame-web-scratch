@@ -72,11 +72,11 @@ namespace game_project.Sounds
         }
 
         // Called via LoadContent
-        public void LoadAllSounds(ContentManager content)
+        public async Task LoadAllSounds(ContentManager content)
         {
             foreach (string effect in Enum.GetNames(typeof(SoundEffects)))
             {
-                soundFX.Add(effect, content.Load<SoundEffect>(effect));
+                soundFX.Add(effect, await content.LoadAsync<SoundEffect>(effect));
             }
         }
 

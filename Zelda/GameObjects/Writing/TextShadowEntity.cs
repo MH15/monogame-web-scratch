@@ -13,10 +13,8 @@ namespace game_project.GameObjects.Writing
 
             name = "TextShadowEntity{'" + stringToWrite + "'}";
 
-            //Console.Log("loading TextShadowEntity");
             TextEntity top = new TextEntity(pos, stringToWrite, color, scale);
             TextEntity shadow = new TextEntity(pos + new Vector2(5, 5), stringToWrite, Color.Black, scale);
-            //Console.Log("loaded TextShadowEntity");
 
             Constants.SetLayerDepth(top, Constants.LayerDepth.Text);
             Constants.SetLayerDepth(shadow, Constants.LayerDepth.Backdrop);

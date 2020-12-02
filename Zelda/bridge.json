@@ -3,7 +3,7 @@
   "outputFormatting": "Minified",
   "usetypedarrays": true,
   "console": {
-      "enabled": true
+      "enabled": false
   },
   "sourceMap": {
       "enabled": false

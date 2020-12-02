@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +12,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Media;
 using game_project.Content.Sprites.SpriteFactories;
 using game_project.Levels;
+using game_project.Sounds;
 
 namespace game_project
 {
@@ -37,6 +40,7 @@ namespace game_project
             await EnemySpriteFactory.Instance.LoadAllTextures(content);
             await LinkItemSpriteFactory.Instance.LoadAllTextures(content);
             //Content.LoadAsync<SpriteFont>("LoZ")
+            //await Sound.Instance.LoadAllSounds(content);
 
             LevelManager.Init();
 

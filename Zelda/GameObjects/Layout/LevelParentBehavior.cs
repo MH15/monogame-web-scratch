@@ -23,21 +23,9 @@ namespace game_project.GameObjects.Layout
             var transform = entity.GetComponent<Transform>();
 
 
-            //i++;
-            //if (i % 100 == 0)
-            //{
-            //    //Console.Log("frame");
-            //    Console.Log(entity.name);
-            //    Console.Log(transform.position.X + ", " + transform.WorldPosition);
-            //    transform.position.X += 40;
-            //    Console.Log(transform.position.X + ", " + transform.WorldPosition);
-            //}
-
-
 
             if (moving)
             {
-                Console.Log("yeeeee, " + t + ", " + transform.position.Y);
                 transform.position = Lerp(start, goal, t);
                 t += deltaT;
 

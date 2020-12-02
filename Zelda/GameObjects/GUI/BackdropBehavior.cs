@@ -20,17 +20,11 @@ namespace game_project.GameObjects.GUI
         private Vector2 start = new Vector2(0, -Game1.viewport.Height + (Game1.viewport.Height - Level.screen_height));
         private Vector2 goal = new Vector2(0, 0);
 
-        int i = 0;
 
         public override void Update(GameTime gameTime)
         {
-            i++;
             var transform = entity.GetComponent<Transform>();
 
-            if (i % 500 == 0)
-            {
-                Console.Log(openState);
-            }
 
             switch (openState)
             {

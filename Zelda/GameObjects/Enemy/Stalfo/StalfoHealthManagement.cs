@@ -3,6 +3,7 @@ using game_project.ECS.Components;
 using game_project.GameObjects.Items;
 using game_project.Content.Sprites.SpriteFactories;
 using game_project.CollisionResponse;
+using game_project.Levels;
 
 namespace game_project.GameObjects.Enemy
 {
@@ -29,6 +30,7 @@ namespace game_project.GameObjects.Enemy
                 coll.response = new ItemCollisionResponse(item);
                 item.AddComponent(coll);
                 item.SetItemType("regularkey");
+                LevelManager.currentLevel.Root.GetComponent<Transform>().AddChild(item);
                 Scene.Add(item);
             }
 

@@ -1,9 +1,12 @@
-﻿using game_project.ECS;
+﻿using System;
+using game_project.ECS;
 using game_project.ECS.Components;
 using game_project.GameObjects.Items;
 using game_project.Content.Sprites.SpriteFactories;
 using game_project.CollisionResponse;
 using game_project.Sounds;
+using game_project.GameObjects.Block;
+using game_project.Levels;
 
 namespace game_project.GameObjects.Enemy
 {
@@ -11,7 +14,7 @@ namespace game_project.GameObjects.Enemy
     {
         public AquamentusHealthManagement(int startingHealth) : base(startingHealth)
         {
-
+            this.health = startingHealth;
         }
 
         public override void Die()
@@ -25,6 +28,12 @@ namespace game_project.GameObjects.Enemy
             };
             heartContainer.AddComponent(coll);
             heartContainer.SetItemType("heartContainer");
+            LevelManager.currentLevel.Root.GetComponent<Transform>().AddChild(heartContainer);
+
+            // temp fix to open door when aquamentus dies
+            Door door = (Door) Scene.Find("right");
+            door.doorType = Door.Type.Open;
+
             Entity.Destroy(entity);
         }
 
